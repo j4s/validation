@@ -1,4 +1,7 @@
 releases:
+v1.0.0-alpha.3 close #25
+ ✔ BugFix: preg_match в ValidationFlags does not return bool #25 @done (18-11-19 15:58)
+
 v1.0.0-alpha.2 close #23, close #19, close #14, close #4, close #13, close #8
  ✔ make standart file structure of project #23 @done (18-11-19 15:23)
  ✔ Добавить в комментарии к методам versions и т.д. #19 @done (18-11-19 15:23)

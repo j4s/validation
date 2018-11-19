@@ -23,7 +23,7 @@ class ValidationFlags extends ApplyFlags
      */
     public function ident() : bool
     {
-        return preg_match('/^[a-z]([a-z0-9_])*$/', $this->target === 1);
+        return preg_match('/^[a-z]([a-z0-9_])*$/', $this->target) === 1;
     }
 
     /**
@@ -34,7 +34,7 @@ class ValidationFlags extends ApplyFlags
      */
     public function domain() : bool
     {
-        return preg_match('/^(https?:\/\/)?([a-zA-z0-9-]*\.)*[a-zA-z0-9-]*\.[a-zA-z0-9-]*$/', $this->target === 1);
+        return preg_match('/^(https?:\/\/)?([a-zA-z0-9-]*\.)*[a-zA-z0-9-]*\.[a-zA-z0-9-]*$/', $this->target) === 1;
     }
 
     /**
@@ -45,7 +45,7 @@ class ValidationFlags extends ApplyFlags
      */
     public function protocol() : bool
     {
-        return preg_match('/^http/', $this->target === 1);
+        return preg_match('/^http/', $this->target) === 1;
     }
 
     /**
@@ -56,7 +56,7 @@ class ValidationFlags extends ApplyFlags
      */
     public function www() : bool
     {
-        return preg_match('/^(https?:\/\/)?(www\.)/', $this->target === 1);
+        return preg_match('/^(https?:\/\/)?(www\.)/', $this->target) === 1;
     }
 
 }

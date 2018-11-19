@@ -1,4 +1,8 @@
 releases:
+v1.0.0-alpha.4 close #1, close #26
+ ✔ BugFix: preg_match() expects parameter 2 to be string, boolean given * @done (18-11-19 23:35)
+ ✔ BugFix: FilterAttribute flag int не срабатывает передаваемое значение по-умолчанию @done (18-11-19 23:35)
+
 v1.0.0-alpha.3 close #25
  ✔ BugFix: preg_match в ValidationFlags does not return bool #25 @done (18-11-19 15:58)
 

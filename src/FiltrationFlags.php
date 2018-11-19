@@ -10,7 +10,7 @@ namespace j4s\validation;
  *
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.0 2018-11-19 14:48:50
+ * @version     v0.2.1 2018-11-19 23:14:17
  */
 class FiltrationFlags extends ApplyFlags
 {
@@ -18,15 +18,14 @@ class FiltrationFlags extends ApplyFlags
     /**
      * Флаг фильтрации числового значения (integer).
      * Возвращает фильтруемое значение, если оно integer иначе возвращает заданное значение по умолчанию.
-     * @version v0.2.0 2018-11-19 14:52:13
+     * @version v0.2.1 2018-11-19 23:14:11
      * @param int $defaultValue - значение по умолчанию
      * @return int
      */
     public function int(int $defaultValue = 0) : int
     {
         $integer = ((int) $this->target);
-        $this->target = $integer == $this->target ? $integer : $defaultValue;
-
+        $this->target = "{$integer}" == $this->target ? $integer : $defaultValue;
         return $this->target;
     }
 

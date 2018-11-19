@@ -1,0 +1,42 @@
+{
+    "name": "j4s/validation",
+    "description": "Classes for validation and filtration of superglobals, arrays and vars",
+    "type": "library",
+    "version": "1.0.0-alpha.2",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "keywords": [
+        "get",
+        "post",
+        "session",
+        "cookies",
+        "superglobals",
+        "arrays",
+        "validation",
+        "filtration"
+    ],
+    "homepage": "https://github.com/j4s/validation",
+    "authors": [
+        {
+            "name": "Eugeniy Makarkin",
+            "email": "soloscriptura@mail.ru",
+            "role": "lead"
+        },
+        {
+            "name": "Esfir Prohorova",
+            "role": "web-developer"
+        }
+    ],
+    "require": {
+        "j4s/superglobals": "1.*.*",
+        "php": ">=7.0.0"
+    },
+    "repositories": [
+    ],
+    "autoload": {
+        "psr-4": {
+          "j4s\\validation\\": "src/"
+        },
+        "files": []
+    }
+}

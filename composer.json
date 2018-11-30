@@ -2,7 +2,7 @@
     "name": "j4s/validation",
     "description": "Classes for validation and filtration of superglobals, arrays and vars",
     "type": "library",
-    "version": "1.0.0-alpha.4",
+    "version": "1.0.0-alpha.5",
     "license": "MIT",
     "minimum-stability": "dev",
     "keywords": [
@@ -35,7 +35,7 @@
     ],
     "autoload": {
         "psr-4": {
-          "j4s\\validation\\": "src/"
+          "j4s\\validation\\": ["src/", "tests/"]
         },
         "files": []
     }

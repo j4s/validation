@@ -10,7 +10,7 @@ namespace j4s\validation;
  *
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v1.0.4 2018-12-07 12:16:14
+ * @version     v1.0.5 2018-12-08 01:02:00
  */
 class ValidationFlagsTest
 {
@@ -61,6 +61,16 @@ class ValidationFlagsTest
         $expect = false;
         // Act
         $ValidationFlags = new ValidationFlags('0onlykey');
+        $act = $ValidationFlags->ident();
+        // Assert Test
+        $UTest->isEqual("ident();", $expect, $act);
+
+
+        // Arrange Test
+        $UTest->nextHint = 'Содержит лишние символы';
+        $expect = false;
+        // Act
+        $ValidationFlags = new ValidationFlags('only^key');
         $act = $ValidationFlags->ident();
         // Assert Test
         $UTest->isEqual("ident();", $expect, $act);
@@ -179,7 +189,7 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода int
-     * @version v0.1.2 2018-12-07 12:12:09
+     * @version v0.1.3 2018-12-08 01:01:53
      * @since v1.0.0-alpha.6
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
@@ -192,7 +202,7 @@ class ValidationFlagsTest
 
 
         // Arrange Test
-        $UTest->nextHint = 'Целое число';
+        $UTest->nextHint = 'Целое число < 0';
         $expect = true;
         // Act
         $ValidationFlags = new ValidationFlags(-5);

@@ -71,6 +71,16 @@ class FiltrationFlagsTest
         $UTest->isEqual("int();", $expect, $act);
 
 
+        // Arrange Test
+        $UTest->nextHint = 'Float';
+        $expect = 0;
+        // Act
+        $Filtration = new FiltrationFlags(123.1);
+        $act = $Filtration->int();
+        // Assert Test
+        $UTest->isEqual("int();", $expect, $act);
+
+
         return $UTest->functionResults;
     }
 }

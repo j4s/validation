@@ -78,4 +78,36 @@ class ValidationFlags extends ApplyFlags
         return preg_match('/^(https?:\/\/)?(www\.)/', $this->target) === 1;
     }
 
+
+    /**
+     * Флаг валидации integer.
+     * Возвращает true, только если $this->target является целым числом
+     * @version v0.1.0 2018-12-05 22:06:40
+     * @since v1.0.0-alpha.6
+     * @return bool
+     */
+    public function int() : bool
+    {
+        $value = $this->target;
+        if ($this->convertNumeric) {
+            $value = (int) $value;
+        }
+
+        return is_int($value);
+    }
+
+
+    /**
+     * Флаг валидации greaterThan.
+     * Возвращает true, только если $this->target больше чем заданное число
+     * @version v0.1.0 2018-12-05 22:38:49
+     * @since v1.0.0-alpha.6
+     * @param int|float $number - число, с которым сравнивается $this->target
+     * @return bool
+     */
+    public function greaterThan($number) : bool
+    {
+        return $this->target > $number;
+    }
+
 }

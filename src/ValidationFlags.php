@@ -11,19 +11,23 @@ namespace j4s\validation;
  * (соответствует ли оно регулярному выражению, либо другим условиям) в формате bool
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.0 2018-11-19 15:00:40
+ * @version     v0.2.1 2018-11-26 06:37:58
  */
 class ValidationFlags extends ApplyFlags
 {
 
     /**
      * Флаг валидации значения идентификатора(ident).
-     * @version v0.2.0 2018-11-19 14:52:13
+     * Идентификатор отвечает следующим условиям: 
+     * 1. Начинается с прописной латинской буквы.
+     * 2. Может состоять только из прописных латинских букв, цифр и нижнего подчеркивания.
+     * @version v0.2.1 2018-11-26 06:37:40
      * @return bool
      */
     public function ident() : bool
     {
-        return preg_match('/^[a-z]([a-z0-9_])*$/', $this->target);
+        return preg_match('/^[a-z]([a-z0-9_])*$/', $this->target) === 1;
+        return preg_match('/^\w([\w\d_])*$/', $this->target) === 1;
     }
 
     /**
@@ -34,18 +38,31 @@ class ValidationFlags extends ApplyFlags
      */
     public function domain() : bool
     {
-        return preg_match('/^(https?:\/\/)?([a-zA-z0-9-]*\.)*[a-zA-z0-9-]*\.[a-zA-z0-9-]*$/', $this->target);
+        return preg_match('/^(https?:\/\/)?([a-zA-z0-9-]*\.)*[a-zA-z0-9-]*\.[a-zA-z0-9-]*$/', $this->target) === 1;
+    }
+
+
+    /**
+     * Флаг валидации URL.
+     * Возврает true, только если $this->target содержит url, допустимо с указанием протокола и www
+     * @version v0.1.0 2018-11-26 13:43:12
+     * @since v1.0.0-alpha.5
+     * @return bool
+     */
+    public function url() : bool
+    {
+        return preg_match('/^(https?:\/\/)?([a-zA-z0-9-]*\.)*[a-zA-z0-9-]*\.[a-zA-z0-9-]*/', $this->target) === 1;
     }
 
     /**
-     * Флаг валидации домена или url.
+     * Флаг валидации домена или url на наличие протокола.
      * Возврает true, только если $this->target начинается с протокола https или http
-     * @version v0.2.0 2018-11-19 14:52:13
+     * @version v0.2.1 2018-11-26 13:39:36
      * @return bool
      */
     public function protocol() : bool
     {
-        return preg_match('/^http/', $this->target);
+        return preg_match('/^http/', $this->target) === 1;
     }
 
     /**
@@ -56,7 +73,7 @@ class ValidationFlags extends ApplyFlags
      */
     public function www() : bool
     {
-        return preg_match('/^(https?:\/\/)?(www\.)/', $this->target);
+        return preg_match('/^(https?:\/\/)?(www\.)/', $this->target) === 1;
     }
 
 }

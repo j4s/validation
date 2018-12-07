@@ -39,7 +39,7 @@ abstract class ApplyFlags
     public function applyFlag(string $flag)
     {
         // Извлекаем из флага имя метода
-        $methodName = preg_replace("/^(.*)\s/", "$1", $flag);
+        $methodName = explode(" ", $flag)[0];
 
         // Извлекаем из флага символьный оператор ! при его наличии
         $negotiation = 0;

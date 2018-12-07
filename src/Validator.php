@@ -10,7 +10,7 @@ namespace j4s\validation;
  * 
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.0 2018-11-19 14:42:11
+ * @version     v0.2.1 2018-12-08 01:13:34
  */
 class Validator
 {
@@ -20,7 +20,7 @@ class Validator
     /**
      * Статический метод валидации заданного атрибута, в соответствии с заданными флагами.
      * В случае непрохождения валидации выбрасывает пользовательскую ошибку
-     * @version v1.1.0 2018-11-19 15:10:53
+     * @version v1.1.1 2018-12-08 01:13:24
      * @param string $attribute атрибут
      * @param string $flags флаги
      * @return void

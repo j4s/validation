@@ -34,13 +34,16 @@ class Validator
 
         // Задаем объект ФлагиВалидации
         $ValidationFlags = new ValidationFlags(static::get($attribute));
+        $ValidationFlags->convertNumeric = static::$convertNumeric;
 
         // Последовательно применяем флаги
         $flags = explode("|", $flags);
         foreach ($flags as $flag) {
             if (!$ValidationFlags->applyFlag($flag)) {
                 // "Атрибут '{$attribute}' массива $" . static::$arrayName . " не прошел валидацию по флагу '{$flag}'."
-                trigger_error("Attribute \"{$attribute}\" of the array $" . static::$arrayName . " failed validation by flag \"{$flag}\".", E_USER_ERROR);
+                $value = htmlentities(static::get($attribute));
+                $type = gettype(static::get($attribute));
+                trigger_error("Attribute \"{$attribute}\" of the array $" . static::$arrayName . " failed validation by flag \"{$flag}\". Current value is \"<strong>{$value}</strong>\"({$type})", E_USER_ERROR);
             }
         }
     }

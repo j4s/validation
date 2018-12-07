@@ -15,6 +15,8 @@ namespace j4s\validation;
  */
 class ValidationFlags extends ApplyFlags
 {
+    /** @var bool $convertNumeric пытаться ли конвертировать строку в число? */
+    public $convertNumeric = false;
 
     /**
      * Флаг валидации значения идентификатора(ident).

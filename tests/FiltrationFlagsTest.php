@@ -11,15 +11,14 @@ namespace j4s\validation;
  * @package     filtration
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
  * @version     v1.0.2 2018-12-08 01:25:11
- * @todo Проверить комментарии phpDocumentor!!
  */
 class FiltrationFlagsTest
 {
 
     /**
      * Запускает тесты данного класса
-     * @version v1.0.0 2018-11-27 11:00:11
-     * @return Null
+     * @version v1.0.1 2018-12-08 01:45:41
+     * @return void
      */
     public static function run()
     {
@@ -31,11 +30,11 @@ class FiltrationFlagsTest
 
     /**
      * Тест для метода int
-     * @version v1.0.1 2018-12-06 15:34:39
+     * @version v1.0.2 2018-12-08 01:45:53
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
-    public static function intTest()
+    public static function intTest() : string
     {
         global $UTest;
 
@@ -53,7 +52,7 @@ class FiltrationFlagsTest
 
 
         // Arrange Test
-        $UTest->nextHint = 'Не цифра';
+        $UTest->nextHint = 'Не число';
         $expect = 0;
         // Act
         $Filtration = new FiltrationFlags('onlykey');
@@ -63,7 +62,7 @@ class FiltrationFlagsTest
 
 
         // Arrange Test
-        $UTest->nextHint = 'Цифра';
+        $UTest->nextHint = 'Число';
         $expect = 123;
         // Act
         $Filtration = new FiltrationFlags(123);

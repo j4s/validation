@@ -10,7 +10,7 @@ namespace j4s\validation;
  *
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v1.0.5 2018-12-08 01:02:00
+ * @version     v1.0.6 2018-12-08 01:50:40
  */
 class ValidationFlagsTest
 {
@@ -35,11 +35,11 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода ident
-     * @version v1.0.2 2018-12-06 15:35:53
+     * @version v1.0.3 2018-12-08 01:49:24
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
-    public static function identTest()
+    public static function identTest() : string
     {
         global $UTest;
 
@@ -81,11 +81,11 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода domain
-     * @version v1.0.2 2018-12-06 15:35:53
+     * @version v1.0.3 2018-12-08 01:49:32
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
-    public static function domainTest()
+    public static function domainTest() : string
     {
         global $UTest;
 
@@ -117,11 +117,11 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода protocol
-     * @version v1.0.2 2018-12-06 15:35:53
+     * @version v1.0.3 2018-12-08 01:49:43
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
-    public static function protocolTest()
+    public static function protocolTest() : string
     {
         global $UTest;
 
@@ -153,11 +153,11 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода www
-     * @version v1.0.2 2018-12-06 15:35:53
+     * @version v1.0.3 2018-12-08 01:49:52
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
-    public static function wwwTest()
+    public static function wwwTest() : string
     {
         global $UTest;
 
@@ -189,12 +189,12 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода int
-     * @version v0.1.3 2018-12-08 01:01:53
+     * @version v0.1.4 2018-12-08 01:50:00
      * @since v1.0.0-alpha.6
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
-    public static function intTest()
+    public static function intTest() : string
     {
         global $UTest;
 
@@ -256,12 +256,12 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода greaterThan
-     * @version v0.1.1 2018-12-06 15:36:44
+     * @version v0.1.2 2018-12-08 01:50:10
      * @since v1.0.0-alpha.6
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
-    public static function greaterThanTest()
+    public static function greaterThanTest() : string
     {
         global $UTest;
 

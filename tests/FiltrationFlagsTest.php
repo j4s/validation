@@ -8,9 +8,9 @@ namespace j4s\validation;
 /**
  * Тесты для класса FiltrationFlags
  *
- * @package     superglobals
+ * @package     filtration
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v1.0.1 2018-12-06 15:35:09
+ * @version     v1.0.2 2018-12-08 01:25:11
  * @todo Проверить комментарии phpDocumentor!!
  */
 class FiltrationFlagsTest

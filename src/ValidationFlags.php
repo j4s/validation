@@ -11,7 +11,7 @@ namespace j4s\validation;
  * (соответствует ли оно регулярному выражению, либо другим условиям) в формате bool
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.1 2018-11-26 06:37:58
+ * @version     v0.2.2 2018-12-08 01:03:06
  */
 class ValidationFlags extends ApplyFlags
 {
@@ -23,13 +23,12 @@ class ValidationFlags extends ApplyFlags
      * Идентификатор отвечает следующим условиям: 
      * 1. Начинается с прописной латинской буквы.
      * 2. Может состоять только из прописных латинских букв, цифр и нижнего подчеркивания.
-     * @version v0.2.1 2018-11-26 06:37:40
+     * @version v0.2.2 2018-12-08 01:03:48
      * @return bool
      */
     public function ident() : bool
     {
         return preg_match('/^[a-z]([a-z0-9_])*$/', $this->target) === 1;
-        return preg_match('/^\w([\w\d_])*$/', $this->target) === 1;
     }
 
     /**

@@ -39,7 +39,7 @@ class Validator
         // Последовательно применяем флаги
         $flags = explode("|", $flags);
         foreach ($flags as $flag) {
-            if (!$ValidationFlags->applyFlag($flag)) {
+            if ($flag !== '' && !$ValidationFlags->applyFlag($flag)) {
                 // "Атрибут '{$attribute}' массива $" . static::$arrayName . " не прошел валидацию по флагу '{$flag}'."
                 $value = htmlentities(static::get($attribute));
                 $type = gettype(static::get($attribute));

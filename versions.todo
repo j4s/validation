@@ -1,4 +1,10 @@
 releases:
+v1.0.0-alpha.6 close #32, close #33, close #34, close #36
+ ✔ Удалить лишние globals у тестов ValidationFlagsTest.php #32 @done (18-12-05 22:14)
+ ✔ check docBlocks at ValidationFlagsTest.php #33 @done (18-12-05 22:17)
+ ✔ Change main object name at ValidationFlagsTest #34 @done (18-12-05 22:23)
+ ✔ Добавить в ValidationFlags методы int и greaterThan #36 @done (18-12-05 22:41)
+
 v1.0.0-alpha.5 close #29, close #30
  ✔ Покрыть тестами класс ValidationFlags #29 @done (18-12-01 00:13)
  ✔ Change comment at ValidationFlags->ident() #30 @done (18-12-01 00:13)

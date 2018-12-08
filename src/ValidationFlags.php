@@ -29,7 +29,12 @@ class ValidationFlags extends ApplyFlags
         parent::__construct($target);
 
         $this->symbolFlags = array(
-            '>' => 'greaterThan'
+            '>'  => 'greaterThan',
+            '>=' => 'greaterThanEq',
+            '<'  => 'lessThan',
+            '<=' => 'lessThanEq',
+            '<>' => 'notEq',
+            '='  => 'eq'
         );
     }
 

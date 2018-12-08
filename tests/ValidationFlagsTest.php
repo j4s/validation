@@ -5,6 +5,8 @@ declare(strict_types=1);
 
 namespace j4s\validation;
 
+use j4s\superglobals\Get;
+
 /**
  * Тесты для класса ValidationFlags
  *
@@ -286,6 +288,11 @@ class ValidationFlagsTest
         $act = $ValidationFlags->greaterThan(1);
         // Assert Test
         $UTest->isEqual("greaterThan(1); 5.2", $expect, $act);
+
+
+        // Arrange Test
+        // Необычный тест - он не выводит зеленую строку в случае успеха, но выведет trigger_error в случае неудачи.
+        Get::requiredAttribute('boolean', 'int|> 0');
 
 
         return $UTest->functionResults;

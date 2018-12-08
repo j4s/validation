@@ -19,6 +19,21 @@ class ValidationFlags extends ApplyFlags
     public $convertNumeric = false;
 
     /**
+     * Конструктор
+     * @version v0.1.0 2018-12-08 08:14:26
+     * @since v1.0.0-alpha.3
+     * @param mixed $target - Значение атрибута, которое проходит валидацию
+     */
+    public function __construct($target = null)
+    {
+        parent::__construct($target);
+
+        $this->symbolFlags = array(
+            '>' => 'greaterThan'
+        );
+    }
+
+    /**
      * Флаг валидации значения идентификатора(ident).
      * Идентификатор отвечает следующим условиям: 
      * 1. Начинается с прописной латинской буквы.

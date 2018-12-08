@@ -10,7 +10,7 @@ namespace j4s\validation;
  * 
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.0 2018-11-19 14:42:11
+ * @version     v0.2.1 2018-12-08 01:13:34
  */
 class Validator
 {
@@ -20,7 +20,7 @@ class Validator
     /**
      * Статический метод валидации заданного атрибута, в соответствии с заданными флагами.
      * В случае непрохождения валидации выбрасывает пользовательскую ошибку
-     * @version v1.1.0 2018-11-19 15:10:53
+     * @version v1.1.1 2018-12-08 01:13:24
      * @param string $attribute атрибут
      * @param string $flags флаги
      * @return void
@@ -34,13 +34,16 @@ class Validator
 
         // Задаем объект ФлагиВалидации
         $ValidationFlags = new ValidationFlags(static::get($attribute));
+        $ValidationFlags->convertNumeric = static::$convertNumeric;
 
         // Последовательно применяем флаги
         $flags = explode("|", $flags);
         foreach ($flags as $flag) {
-            if (!$ValidationFlags->applyFlag($flag)) {
+            if ($flag !== '' && !$ValidationFlags->applyFlag($flag)) {
                 // "Атрибут '{$attribute}' массива $" . static::$arrayName . " не прошел валидацию по флагу '{$flag}'."
-                trigger_error("Attribute \"{$attribute}\" of the array $" . static::$arrayName . " failed validation by flag \"{$flag}\".", E_USER_ERROR);
+                $value = htmlentities(static::get($attribute));
+                $type = gettype(static::get($attribute));
+                trigger_error("Attribute \"{$attribute}\" of the array $" . static::$arrayName . " failed validation by flag \"{$flag}\". Current value is \"<strong>{$value}</strong>\"({$type})", E_USER_ERROR);
             }
         }
     }

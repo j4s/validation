@@ -6,20 +6,19 @@ declare(strict_types=1);
 namespace j4s\validation;
 
 /**
- * Class FiltrationFlagsTest - Тесты для класса FiltrationFlags
+ * Тесты для класса FiltrationFlags
  *
- * @package     superglobals
+ * @package     filtration
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v1.0.0 2018-11-27 11:00:22
- * @todo Проверить комментарии phpDocumentor!!
+ * @version     v1.0.2 2018-12-08 01:25:11
  */
 class FiltrationFlagsTest
 {
 
     /**
      * Запускает тесты данного класса
-     * @version v1.0.0 2018-11-27 11:00:11
-     * @return Null
+     * @version v1.0.1 2018-12-08 01:45:41
+     * @return void
      */
     public static function run()
     {
@@ -31,12 +30,13 @@ class FiltrationFlagsTest
 
     /**
      * Тест для метода int
-     * @version v1.0.0 2018-11-27 11:01:31
+     * @version v1.0.2 2018-12-08 01:45:53
+     * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
-    public static function intTest()
+    public static function intTest() : string
     {
-        global $UTest, $RE1;
+        global $UTest;
 
         $UTest->methodName = 'int';
 
@@ -45,28 +45,38 @@ class FiltrationFlagsTest
         $UTest->nextHint = 'Пустое значение';
         $expect = 0;
         // Act
-        $RE1 = new FiltrationFlags('');
-        $act = $RE1->int();
+        $Filtration = new FiltrationFlags('');
+        $act = $Filtration->int();
         // Assert Test
         $UTest->isEqual("int();", $expect, $act);
 
 
         // Arrange Test
-        $UTest->nextHint = 'Не цифра';
+        $UTest->nextHint = 'Не число';
         $expect = 0;
         // Act
-        $RE1 = new FiltrationFlags('onlykey');
-        $act = $RE1->int();
+        $Filtration = new FiltrationFlags('onlykey');
+        $act = $Filtration->int();
         // Assert Test
         $UTest->isEqual("int();", $expect, $act);
 
 
         // Arrange Test
-        $UTest->nextHint = 'Цифра';
+        $UTest->nextHint = 'Число';
         $expect = 123;
         // Act
-        $RE1 = new FiltrationFlags(123);
-        $act = $RE1->int();
+        $Filtration = new FiltrationFlags(123);
+        $act = $Filtration->int();
+        // Assert Test
+        $UTest->isEqual("int();", $expect, $act);
+
+
+        // Arrange Test
+        $UTest->nextHint = 'Float';
+        $expect = 0;
+        // Act
+        $Filtration = new FiltrationFlags(123.1);
+        $act = $Filtration->int();
         // Assert Test
         $UTest->isEqual("int();", $expect, $act);
 

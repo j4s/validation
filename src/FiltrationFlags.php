@@ -8,9 +8,9 @@ namespace j4s\validation;
 /**
  * Класс реализующий функционал флагов фильтрации
  *
- * @package     validation
+ * @package     filtration
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.1 2018-11-19 23:14:17
+ * @version     v0.2.2 2018-12-08 01:24:19
  */
 class FiltrationFlags extends ApplyFlags
 {

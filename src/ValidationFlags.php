@@ -11,23 +11,44 @@ namespace j4s\validation;
  * (соответствует ли оно регулярному выражению, либо другим условиям) в формате bool
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.1 2018-11-26 06:37:58
+ * @version     v0.2.2 2018-12-08 01:03:06
  */
 class ValidationFlags extends ApplyFlags
 {
+    /** @var bool $convertNumeric пытаться ли конвертировать строку в число? */
+    public $convertNumeric = false;
+
+    /**
+     * Конструктор
+     * @version v0.1.0 2018-12-08 08:14:26
+     * @since v1.0.0-alpha.3
+     * @param mixed $target - Значение атрибута, которое проходит валидацию
+     */
+    public function __construct($target = null)
+    {
+        parent::__construct($target);
+
+        $this->symbolFlags = array(
+            '>'  => 'greaterThan',
+            '>=' => 'greaterThanEq',
+            '<'  => 'lessThan',
+            '<=' => 'lessThanEq',
+            '<>' => 'notEq',
+            '='  => 'eq'
+        );
+    }
 
     /**
      * Флаг валидации значения идентификатора(ident).
      * Идентификатор отвечает следующим условиям: 
      * 1. Начинается с прописной латинской буквы.
      * 2. Может состоять только из прописных латинских букв, цифр и нижнего подчеркивания.
-     * @version v0.2.1 2018-11-26 06:37:40
+     * @version v0.2.2 2018-12-08 01:03:48
      * @return bool
      */
     public function ident() : bool
     {
         return preg_match('/^[a-z]([a-z0-9_])*$/', $this->target) === 1;
-        return preg_match('/^\w([\w\d_])*$/', $this->target) === 1;
     }
 
     /**
@@ -74,6 +95,38 @@ class ValidationFlags extends ApplyFlags
     public function www() : bool
     {
         return preg_match('/^(https?:\/\/)?(www\.)/', $this->target) === 1;
+    }
+
+
+    /**
+     * Флаг валидации integer.
+     * Возвращает true, только если $this->target является целым числом
+     * @version v0.1.0 2018-12-05 22:06:40
+     * @since v1.0.0-alpha.6
+     * @return bool
+     */
+    public function int() : bool
+    {
+        $value = $this->target;
+        if ($this->convertNumeric) {
+            $value = (int) $value;
+        }
+
+        return is_int($value);
+    }
+
+
+    /**
+     * Флаг валидации greaterThan.
+     * Возвращает true, только если $this->target больше чем заданное число
+     * @version v0.1.0 2018-12-05 22:38:49
+     * @since v1.0.0-alpha.6
+     * @param int|float $number - число, с которым сравнивается $this->target
+     * @return bool
+     */
+    public function greaterThan($number) : bool
+    {
+        return $this->target > $number;
     }
 
 }

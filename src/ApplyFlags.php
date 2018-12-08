@@ -10,19 +10,19 @@ namespace j4s\validation;
  *
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.1 2018-11-19 14:48:00
+ * @version     v0.2.2 2018-12-08 08:17:31
  */
 abstract class ApplyFlags
 {
-    /** @var bool $target Значение атрибута, который проходит валидацию */
+    /** @var mixed $target - Значение атрибута, который проходит валидацию */
     protected $target;
-    /** @var array $symbolOperators Массив зарегистрированных символьных операторов */
-    protected $symbolOperators = array('>=', '<=', '<', '>', '!');
+    /** @var array $symbolFlags - Массив символьных операторов с именами их алиас-методов */
+    public $symbolFlags = array();
 
     /**
      * Конструктор
-     * @version v1.0.2 2018-11-19 14:44:29
-     * @param bool $target - Значение атрибута, который проходит валидацию
+     * @version v1.0.3 2018-12-08 08:17:22
+     * @param mixed $target - Значение атрибута, который проходит валидацию
      */
     public function __construct($target = null)
     {
@@ -39,13 +39,17 @@ abstract class ApplyFlags
     public function applyFlag(string $flag)
     {
         // Извлекаем из флага имя метода
-        $methodName = explode(" ", $flag)[0];
+        $realMethodName = $methodName = explode(" ", $flag)[0];
 
         // Извлекаем из флага символьный оператор ! при его наличии
         $negotiation = 0;
         if (preg_match("/^\!/", $methodName)) {
-            $methodName = preg_replace("/!(.*)/", "$1", $methodName);
+            $realMethodName = preg_replace("/!(.*)/", "$1", $methodName);
             $negotiation = 1;
+
+        // Заменяем другие символьные операторы на соответствующие имена методов
+        } else if (array_key_exists($methodName, $this->symbolFlags)) {
+            $realMethodName = $this->symbolFlags[$methodName];
         }
 
         // Извлекаем из флага аргументы
@@ -53,11 +57,11 @@ abstract class ApplyFlags
         $arguments[0] = substr($arguments[0], strlen($methodName) + 1);
 
         // Вызываем метод текущего класса
-        if (method_exists($this, $methodName)) {
+        if (method_exists($this, $realMethodName)) {
             if ($negotiation) {
-                return ! call_user_func_array(array(&$this, $methodName), $arguments);
+                return ! call_user_func_array(array(&$this, $realMethodName), $arguments);
             } else {
-                return call_user_func_array(array(&$this, $methodName), $arguments);
+                return call_user_func_array(array(&$this, $realMethodName), $arguments);
             }
         } else {
             // 'Извините, заданный метод ' . $methodName . ' не существует'

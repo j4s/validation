@@ -10,19 +10,19 @@ namespace j4s\validation;
  *
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.1 2018-11-19 14:48:00
+ * @version     v0.2.2 2018-12-08 08:17:31
  */
 abstract class ApplyFlags
 {
-    /** @var bool $target Значение атрибута, который проходит валидацию */
+    /** @var mixed $target Значение атрибута, который проходит валидацию */
     protected $target;
     /** @var array $symbolOperators Массив зарегистрированных символьных операторов */
     protected $symbolOperators = array('>=', '<=', '<', '>', '!');
 
     /**
      * Конструктор
-     * @version v1.0.2 2018-11-19 14:44:29
-     * @param bool $target - Значение атрибута, который проходит валидацию
+     * @version v1.0.3 2018-12-08 08:17:22
+     * @param mixed $target - Значение атрибута, который проходит валидацию
      */
     public function __construct($target = null)
     {

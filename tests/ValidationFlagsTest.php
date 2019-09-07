@@ -12,7 +12,7 @@ use j4s\superglobals\Get;
  *
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v1.0.6 2018-12-08 01:50:40
+ * @version     v1.2.0 2019-05-25 15:04:17
  */
 class ValidationFlagsTest
 {
@@ -37,7 +37,7 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода ident
-     * @version v1.0.3 2018-12-08 01:49:24
+     * @version v1.1.0 2019-05-24 19:53:57
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
      */
@@ -47,6 +47,15 @@ class ValidationFlagsTest
 
         $UTest->methodName = 'ident';
 
+
+        // Arrange Test
+        $UTest->nextHint = 'Является пустым';
+        $expect = false;
+        // Act
+        $ValidationFlags = new ValidationFlags('');
+        $act = $ValidationFlags->ident();
+        // Assert Test
+        $UTest->isEqual("ident();", $expect, $act);
 
         // Arrange Test
         $UTest->nextHint = 'Начинается с латинской буквы';
@@ -191,7 +200,7 @@ class ValidationFlagsTest
 
     /**
      * Тест для метода int
-     * @version v0.1.4 2018-12-08 01:50:00
+     * @version v0.2.0 2019-05-25 15:04:04
      * @since v1.0.0-alpha.6
      * @global object $UTest - Глобальный объект UTest
      * @return string - html тег с сообщением результата прохождения теста
@@ -251,6 +260,28 @@ class ValidationFlagsTest
         $act = $ValidationFlags->int();
         // Assert Test
         $UTest->isEqual("int(); 1", $expect, $act);
+
+
+        // Arrange Test
+        $UTest->nextHint = 'string 1 with convertNumeric';
+        $expect = true;
+        // Act
+        $ValidationFlags = new ValidationFlags('1');
+        $ValidationFlags->convertNumeric = true;
+        $act = $ValidationFlags->int();
+        // Assert Test
+        $UTest->isEqual("int(); 1", $expect, $act);
+
+
+        // Arrange Test
+        $UTest->nextHint = 'string "a" with convertNumeric';
+        $expect = false;
+        // Act
+        $ValidationFlags = new ValidationFlags('a');
+        $ValidationFlags->convertNumeric = true;
+        $act = $ValidationFlags->int();
+        // Assert Test
+        $UTest->isEqual("int(); a", $expect, $act);
 
 
         return $UTest->functionResults;

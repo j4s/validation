@@ -11,7 +11,7 @@ namespace j4s\validation;
  * (соответствует ли оно регулярному выражению, либо другим условиям) в формате bool
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.2 2018-12-08 01:03:06
+ * @version     v0.3.0 2019-05-25 11:53:19
  */
 class ValidationFlags extends ApplyFlags
 {
@@ -101,7 +101,7 @@ class ValidationFlags extends ApplyFlags
     /**
      * Флаг валидации integer.
      * Возвращает true, только если $this->target является целым числом
-     * @version v0.1.0 2018-12-05 22:06:40
+     * @version v0.1.2 2019-05-25 15:17:03
      * @since v1.0.0-alpha.6
      * @return bool
      */
@@ -109,10 +109,10 @@ class ValidationFlags extends ApplyFlags
     {
         $value = $this->target;
         if ($this->convertNumeric) {
-            $value = (int) $value;
+            return strval($value) === strval((int) $value);
+        } else {
+            return is_int($value);
         }
-
-        return is_int($value);
     }
 
 
@@ -127,6 +127,38 @@ class ValidationFlags extends ApplyFlags
     public function greaterThan($number) : bool
     {
         return $this->target > $number;
+    }
+
+    /**
+     * Флаг валидации eq.
+     * Возвращает true, только если $this->target равен заданному значению
+     * @version v0.1.0 2019-05-25 11:50:43
+     * @since v1.0.0-alpha.7
+     * @param string $value - Значение
+     * @return bool
+     */
+    public function eq($value) : bool
+    {
+        return $this->target == $value;
+    }
+
+    /**
+     * Флаг валидации date.
+     * Возвращает true, только если $this->target Является корректной датой формата Y-m-d
+     * @version v0.1.0 2019-05-28 21:48:32
+     * @since v1.0.0-alpha.7
+     * @param string $date - Дата
+     * @return bool
+     */
+    public function date() : bool
+    {
+        $date = $this->target;
+
+        if (preg_match("/^\d{4}\-\d{2}\-\d{2}$/", $date) && strtotime($date)) {
+            return $date === date("Y-m-d", strtotime($date));
+        } else {
+            return false;
+        }
     }
 
 }

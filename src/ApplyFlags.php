@@ -53,7 +53,6 @@ abstract class ApplyFlags
         if (array_key_exists($realMethodName, $this->symbolFlags)) {
             $realMethodName = $this->symbolFlags[$realMethodName];
         }
-//        debug($realMethodName, $negotiation, $this->symbolFlags);
 
         // Извлекаем из флага аргументы
         $arguments = explode(",", $flag);

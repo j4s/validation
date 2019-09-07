@@ -10,7 +10,7 @@ namespace j4s\validation;
  *
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.2 2018-12-08 08:17:31
+ * @version     v0.2.3 2019-05-25 11:43:43
  */
 abstract class ApplyFlags
 {
@@ -32,7 +32,7 @@ abstract class ApplyFlags
     /**
      * Основной метод класса - применяет к заданному значению заданный флаг.
      * Если метод с флагом отсутствует в дочернем классе, то выводит ошибку.
-     * @version v1.0.3 2018-11-19 14:45:09
+     * @version v1.0.4 2019-05-25 11:43:31
      * @param string $flag флаг
      * @return mixed
      */
@@ -41,16 +41,19 @@ abstract class ApplyFlags
         // Извлекаем из флага имя метода
         $realMethodName = $methodName = explode(" ", $flag)[0];
 
-        // Извлекаем из флага символьный оператор ! при его наличии
+        // Извлекаем из имени метода символьный оператор ! при его наличии
         $negotiation = 0;
-        if (preg_match("/^\!/", $methodName)) {
-            $realMethodName = preg_replace("/!(.*)/", "$1", $methodName);
+        if (preg_match("/^\!/", $realMethodName)) {
+            $realMethodName = preg_replace("/!(.*)/", "$1", $realMethodName);
             $negotiation = 1;
 
-        // Заменяем другие символьные операторы на соответствующие имена методов
-        } else if (array_key_exists($methodName, $this->symbolFlags)) {
-            $realMethodName = $this->symbolFlags[$methodName];
         }
+
+        // Заменяем другие символьные операторы на соответствующие имена методов
+        if (array_key_exists($realMethodName, $this->symbolFlags)) {
+            $realMethodName = $this->symbolFlags[$realMethodName];
+        }
+//        debug($realMethodName, $negotiation, $this->symbolFlags);
 
         // Извлекаем из флага аргументы
         $arguments = explode(",", $flag);
@@ -65,7 +68,7 @@ abstract class ApplyFlags
             }
         } else {
             // 'Извините, заданный метод ' . $methodName . ' не существует'
-            trigger_error("Sorry, method \"{$methodName}\" does not exist.", E_USER_ERROR);
+            trigger_error("Sorry, method \"{$realMethodName}\" does not exist.", E_USER_ERROR);
         }
     }
 

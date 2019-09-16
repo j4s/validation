@@ -39,12 +39,12 @@ abstract class ApplyFlags
     public function applyFlag(string $flag)
     {
         // Извлекаем из флага имя метода
-        $realMethodName = $methodName = explode(" ", $flag)[0];
+        $realMethodName = $methodName = explode(' ', $flag)[0];
 
         // Извлекаем из имени метода символьный оператор ! при его наличии
         $negotiation = 0;
-        if (preg_match("/^\!/", $realMethodName)) {
-            $realMethodName = preg_replace("/!(.*)/", "$1", $realMethodName);
+        if (preg_match('/^!/', $realMethodName)) {
+            $realMethodName = preg_replace('/!(.*)/', '$1', $realMethodName);
             $negotiation = 1;
 
         }
@@ -55,20 +55,17 @@ abstract class ApplyFlags
         }
 
         // Извлекаем из флага аргументы
-        $arguments = explode(",", $flag);
+        $arguments = explode(',', $flag);
         $arguments[0] = substr($arguments[0], strlen($methodName) + 1);
 
-        // Вызываем метод текущего класса
-        if (method_exists($this, $realMethodName)) {
-            if ($negotiation) {
-                return ! call_user_func_array(array(&$this, $realMethodName), $arguments);
-            } else {
-                return call_user_func_array(array(&$this, $realMethodName), $arguments);
-            }
-        } else {
-            // 'Извините, заданный метод ' . $methodName . ' не существует'
+        if (! method_exists($this, $realMethodName)) {
             trigger_error("Sorry, method \"{$realMethodName}\" does not exist.", E_USER_ERROR);
         }
+
+        // Вызываем метод текущего класса
+        $result = call_user_func_array(array(&$this, $realMethodName), $arguments);
+
+        return $negotiation ? $result : ! $result;
     }
 
 }

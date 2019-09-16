@@ -83,7 +83,7 @@ class ValidationFlags extends ApplyFlags
      */
     public function protocol() : bool
     {
-        return preg_match('/^http/', $this->target) === 1;
+        return 0 === strpos($this->target, 'http');
     }
 
     /**
@@ -109,10 +109,10 @@ class ValidationFlags extends ApplyFlags
     {
         $value = $this->target;
         if ($this->convertNumeric) {
-            return strval($value) === strval((int) $value);
-        } else {
-            return is_int($value);
+            return (string)$value === (string)(int)$value;
         }
+
+        return is_int($value);
     }
 
 
@@ -147,18 +147,17 @@ class ValidationFlags extends ApplyFlags
      * Возвращает true, только если $this->target Является корректной датой формата Y-m-d
      * @version v0.1.0 2019-05-28 21:48:32
      * @since v1.0.0-alpha.7
-     * @param string $date - Дата
      * @return bool
      */
     public function date() : bool
     {
         $date = $this->target;
 
-        if (preg_match("/^\d{4}\-\d{2}\-\d{2}$/", $date) && strtotime($date)) {
-            return $date === date("Y-m-d", strtotime($date));
-        } else {
-            return false;
+        if (preg_match("/^\d{4}-\d{2}-\d{2}$/", $date) && strtotime($date)) {
+            return $date === date('Y-m-d', strtotime($date));
         }
+
+        return false;
     }
 
 }

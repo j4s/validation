@@ -10,7 +10,7 @@ namespace j4s\validation;
  * 
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.3.0 2019-05-25 14:39:48
+ * @version     v0.3.1 2019-09-16 08:55:37
  */
 class Validator
 {
@@ -20,10 +20,11 @@ class Validator
     /**
      * Статический метод валидации заданного атрибута, в соответствии с заданными флагами.
      * В случае непрохождения валидации выбрасывает пользовательскую ошибку с заданным текстом
-     * @version v1.2.0 2019-05-25 14:39:34
      * @param string $attribute атрибут
      * @param string $flags флаги
+     * @param string|null $errorMessage - текст ошибки
      * @return void
+     * @version v1.2.1 2019-09-16 08:54:34
      */
     public static function validateAttribute(string $attribute, string $flags, ?string $errorMessage = null)
     {
@@ -37,7 +38,7 @@ class Validator
         $ValidationFlags->convertNumeric = static::$convertNumeric;
 
         // Последовательно применяем флаги
-        $flags = explode("|", $flags);
+        $flags = explode('|', $flags);
         foreach ($flags as $flag) {
             if ($flag !== '' && !$ValidationFlags->applyFlag($flag)) {
                 // "Атрибут '{$attribute}' массива $" . static::$arrayName . " не прошел валидацию по флагу '{$flag}'."

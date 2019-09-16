@@ -25,7 +25,8 @@ class FiltrationFlags extends ApplyFlags
     public function int(int $defaultValue = 0) : int
     {
         $integer = ((int) $this->target);
-        $this->target = "{$integer}" == $this->target ? $integer : $defaultValue;
+        $this->target = (string)$integer === $this->target ? $integer : $defaultValue;
+
         return $this->target;
     }
 

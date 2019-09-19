@@ -10,7 +10,7 @@ namespace j4s\validation;
  *
  * @package     validation
  * @author      Eugeniy Makarkin <soloscriptura@mail.ru>
- * @version     v0.2.3 2019-05-25 11:43:43
+ * @version     v0.2.4 2019-09-19 10:00:54
  */
 abstract class ApplyFlags
 {
@@ -32,7 +32,7 @@ abstract class ApplyFlags
     /**
      * Основной метод класса - применяет к заданному значению заданный флаг.
      * Если метод с флагом отсутствует в дочернем классе, то выводит ошибку.
-     * @version v1.0.4 2019-05-25 11:43:31
+     * @version v1.0.5 2019-09-19 10:00:42
      * @param string $flag флаг
      * @return mixed
      */
@@ -65,7 +65,7 @@ abstract class ApplyFlags
         // Вызываем метод текущего класса
         $result = call_user_func_array(array(&$this, $realMethodName), $arguments);
 
-        return $negotiation ? $result : ! $result;
+        return $negotiation ? ! $result : $result;
     }
 
 }

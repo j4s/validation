@@ -1,7 +1,10 @@
 releases:
+v1.0.0-alpha.8 (2019-09-19 10:52:52)
+ 🚨 Fix bugs of the release bug
+
 v1.0.0-alpha.7 (2019-09-16 09:13:06)
-🛠 by some phpStorm recommendations refactoring
-[flags] Add flags eq, date
+ 🛠 by some phpStorm recommendations refactoring
+ [flags] Add flags eq, date
 
 v1.0.0-alpha.6 close #54, close #53, close #52, close #50, close #48, close #49, close #33, close #46, close #47, close #45, close #37, close #35, close #40, close #34, close #36, close #39, close #32, close #38, close #44
  ✔ Добавить синонимы символьных флагов enhancement #54 @done (18-12-08 12:57)

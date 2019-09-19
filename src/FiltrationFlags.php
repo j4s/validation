@@ -19,10 +19,10 @@ class FiltrationFlags extends ApplyFlags
      * Флаг фильтрации числового значения (integer).
      * Возвращает фильтруемое значение, если оно integer иначе возвращает заданное значение по умолчанию.
      * @version v0.2.2 2019-09-19 10:01:53
-     * @param int $defaultValue - значение по умолчанию
+     * @param mixed $defaultValue - значение по умолчанию
      * @return int
      */
-    public function int(int $defaultValue = 0) : int
+    public function int($defaultValue = 0) : int
     {
         if ((int) $this->target === $this->target) {
             return $this->target;

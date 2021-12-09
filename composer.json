@@ -2,7 +2,7 @@
     "name": "j4s/validation",
     "description": "Classes for validation and filtration of superglobals, arrays and vars",
     "type": "library",
-    "version": "1.0.0-alpha.8",
+    "version": "1.0.0",
     "license": "MIT",
     "minimum-stability": "dev",
     "keywords": [

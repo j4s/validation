@@ -1,5 +1,5 @@
 # validation
-v1.0.0-alpha.8
+v1.0.0
 
 
 

@@ -1,6 +1,7 @@
 ## Editors and IDEs
 /sftp-config.json
 .idea
+.vscode
 nbproject
 
 ## OS generated files
